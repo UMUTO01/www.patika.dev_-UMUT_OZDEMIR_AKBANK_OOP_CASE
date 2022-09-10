@@ -1,0 +1,737 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+
+    public static void main(String[] args) {
+        FirstProgram();
+
+	// write your code here
+
+
+    }
+    public static void FirstProgram(){
+
+        Scanner scan = new Scanner(System.in);
+        HGSAccountControl Control = new HGSAccountControl();
+        int dasAA = 1;
+        int a;
+        boolean Falsch;
+
+        boolean Enable = true;
+        while(Enable == true){
+            if(Control.HGSBus.NewIntegerWB == 0 || Control.HGSAuto.NewIntegerW == 0 || Control.HGSMinibus.NewIntegerWMB == 0){
+
+                System.out.println("*******************************************************************");
+
+                System.out.println("");
+
+                System.out.println("Otobüs geçişi için 1, Araba için 2, Minibüs için 3'e basınız: ");
+
+                System.out.println("");
+
+                System.out.println("***Uyarı Eğer Hafızada Araç Kaydı Bulunmuyorsa Araç Kaydı ve Bakiye GÖRÜNTÜLENEMEZ ve Sadece 100 işlem Yapılabilir***");
+
+                a = scan.nextInt();
+            }
+
+            else{
+                System.out.println("*******************************************************************");
+
+                System.out.println("");
+
+                System.out.println("Otobüs geçişi için 1, Araba için 2, Minibüs için 3'e basınız: ");
+
+                System.out.println("");
+
+                System.out.println("Araç Kayıtlarını Görmek için 4'e");
+
+                System.out.println("");
+
+                System.out.println("Toplamda Kazanılan Bakiyeyi Görmek için 5'e Basınız: ");
+                a = scan.nextInt();
+            }
+
+
+            int b = a;
+
+                 if(b == 2) {
+                     Control.HGSAuto.ReacherAuto();
+                     Control.LeftAccount(a);
+                     System.out.println("");
+                     System.out.println("Araç Kaydına Devam Etmek için  1, Kayıtlı Bakiyeyi Görmek için 2, Geçen Araç Listesi için 3");
+                     int d = scan.nextInt();
+
+                     switch (d) {
+                         case 1:
+                             Falsch = true;
+                             break;
+                         case 2:
+                             System.out.println("Toplamda Elde Edilen Kazanç : ");
+                             Control.SetPrice();
+
+
+                             break;
+
+                         case 3:
+                             Control.AmountOfCarsThatPassedReturner();
+                             System.out.println("Başa Yönlendiriliyorsunuz");
+                             break;
+
+
+                         default:
+                             System.out.println("Yanlış Tuş, Başa Yönlendiriliyorsunuz");
+
+                     }
+
+
+                 }
+
+                 if(b == 1){
+                     Control.HGSBus.ReacherBus();
+                     Control.LeftAccount(b);
+                     System.out.println("");
+                     System.out.println("Araç Kaydına Devam Etmek için  1, Kayıtlı Bakiyeyi Görmek için 2, Geçen Araç Listesi için 3");
+                     int da = scan.nextInt();
+
+                     switch (da) {
+                         case 1:
+                             Falsch = true;
+                             break;
+                         case 2:
+                             System.out.println("Toplamda Elde Edilen Kazanç : ");
+                             Control.SetPrice();
+
+
+                             break;
+
+                         case 3:
+                             Control.AmountOfCarsThatPassedReturner();
+                             System.out.println("Başa Yönlendiriliyorsunuz");
+                             break;
+
+                         default:
+                             System.out.println("Yanlış Tuş, Başa Yönlendiriliyorsunuz");
+
+                     }
+
+
+                 }
+
+                 if(b==3){
+                     Control.HGSMinibus.ReacherMB();
+                     System.out.println("Araç Kaydına Devam Etmek için  1, Kayıtlı Bakiyeyi Görmek için 2, Geçen Araç Listesi için 3, Çıkış için 4");
+
+                     int das = scan.nextInt();
+                     switch (das) {
+                         case 1:
+                             Falsch = true;
+                             break;
+                         case 2:
+                             System.out.println("Toplamda Elde Edilen Kazanç : ");
+                             Control.SetPrice();
+
+                             break;
+
+                         case 3:
+                             Control.AmountOfCarsThatPassedReturner();
+                             System.out.println("Başa Yönlendiriliyorsunuz");
+                             break;
+
+
+                         default:
+                             System.out.println("Yanlış Tuş, Başa Yönlendiriliyorsunuz");
+
+                     }
+
+
+                }
+                 dasAA++;
+                if(dasAA>100){
+                    Enable =false;
+                }
+
+        }
+
+    }
+
+}
+
+
+/////HGS Gise Sınıfı Assaigda/////////////AdıHGSAccountControl////////////HGS Gise Sınıfı Assaigda////////////////////HGS Gise Sınıfı Assaigda///////////////////HGS Gise Sınıfı Assaigda//////////////////////////////////////////////////////////////////
+
+
+package com.company;
+
+public class HGSAccountControl{
+    public Bus Bus;
+    public AUTO Auto;
+    public Minibus Minibus;
+    public HGSAccountRecord Art;
+    public double TotalAmount=0;
+
+    Bus HGSBus = new Bus();
+    AUTO HGSAuto = new AUTO();
+    Minibus HGSMinibus = new Minibus();
+    HGSAccountRecord HGSACCOUNT23 = new HGSAccountRecord();
+
+
+
+    public String[] AmountOfCarsThatPassed = new String[(HGSAuto.NameofArray.length + HGSBus.NameofArrayB.length + HGSMinibus.NameofArrayMB.length)];
+
+
+
+    public  void SetPrice(){
+        HGSACCOUNT23.Total();
+    }
+
+    public void LeftAccount(int NumberOfLeftAccount){
+        int noun = 0;
+        int ba = 0;
+        int dcv = 0;
+        if(NumberOfLeftAccount==2){
+            double NewTotal = HGSAuto.TotalAccoutOfArray(HGSAuto.NewInteger-1) - this.HGSAuto.PassingP;
+            System.out.println("Kalan Bakiye = "+NewTotal);
+            noun +=1;
+
+
+
+
+
+        }
+
+        if(NumberOfLeftAccount==1){
+            double NewTotal = HGSBus.TotalAccoutOfArrayB(HGSBus.NewIntegerB-1) - this.HGSBus.PassingPB;
+            System.out.println("Kalan Bakiye = "+NewTotal);
+            ba += 1;
+
+
+        }
+
+        if(NumberOfLeftAccount==3){
+            double NewTotal = HGSAuto.TotalAccoutOfArray(HGSAuto.NewInteger-1) - this.HGSAuto.PassingP;
+            System.out.println("Kalan Bakiye = "+NewTotal);
+            dcv += 1;
+
+
+        }
+
+        HGSACCOUNT23.setTotalAmountGainedA(noun*7.50);
+        HGSACCOUNT23.setTotalAmountGainedB(ba*20.75);
+
+        HGSACCOUNT23.setTotalAmountGainedMB(dcv*15.75);
+
+    }
+
+    public void AmountOfCarsThatPassedReturner(){
+
+        for(int i = 0 ; i <= (HGSAuto.NewIntegerW - 1); i++){
+            this.AmountOfCarsThatPassed[i] = HGSAuto.NameofArray[i] + "  Adına Kayıtlı ,  " + HGSAuto.PlateofArray[i]+ "  Plakaya Sahip Otomobil ,  "+
+                    HGSAuto.DateofArray[i] + "  Tarihinde ve  " + HGSAuto.HourofArray[i] + "  Saatinde" +  "  Geçiş Yapmıştır. ";
+        }
+        for(int ei = HGSAuto.NewIntegerW; ei <= (HGSAuto.NewIntegerW + HGSBus.NewIntegerWB - 1) ; ei+=1){
+            this.AmountOfCarsThatPassed[ei] = HGSBus.NameofArrayB[ei]+ "  Adına Kayıtlı ," + HGSBus.PlateofArrayB[ei]+ "  Plakaya Sahip Otobüs ,  "+
+                     HGSBus.DateofArrayB[ei] + "  Tarihinde ve  " + HGSBus.HourofArrayB[ei] + "  Saatinde Geçiş Yapmıştır  ";
+        }
+        for(int ci = HGSAuto.NewIntegerW + HGSBus.NewIntegerWB; ci <= (HGSBus.NewIntegerWB + HGSAuto.NewInteger + HGSMinibus.NewIntegerWMB - 1 ); ci ++){
+            this.AmountOfCarsThatPassed[ci] = HGSMinibus.NameofArrayMB[ci]+ "  Adına Kayıtlı ," + HGSMinibus.PlateofArrayMB[ci]+ " Plakaya Sahip Minibüs , "+
+                    HGSMinibus.DateofArrayMB[ci] + "  Tarihinde ve  " + HGSMinibus.HourofArrayMB[ci] + " Saatinde Geçiş Yapmıştır ";
+        }
+        AmountOfVehicleReturner();
+    }
+
+
+    public void AmountOfVehicleReturner(){
+        for(int di = 0; di <= HGSAuto.NewInteger + HGSBus.NewIntegerWB+ HGSMinibus.NewIntegerWMB-1;di++){
+            System.out.println("");
+            System.out.println(this.AmountOfCarsThatPassed[di]);
+            System.out.println("");
+        }
+
+
+    }
+
+    public HGSAccountRecord getArt() {
+        return Art;
+    }
+
+    public Bus GetBus(){
+        return  this.Bus;
+    }
+
+    public AUTO GetAuto(){
+        return  this.Auto;
+    }
+
+    public Minibus GetMinibus(){
+        return this.Minibus;
+    }
+
+
+
+}
+
+//// Composition Classlarım Bus, Auto, Minibus ve HGS Para Kayıt Gisesi/////////////////////
+///önce bus sınıfı/////////7
+package com.company;
+
+import java.util.Scanner;
+
+public class Bus {
+
+
+
+
+        public double PassingPB = 20.75;
+
+        public String[] NameofArrayB = new String[25];
+
+        public String[] PlateofArrayB = new String[25];
+
+        public String[] DateofArrayB = new String[25];
+
+        public String[] HourofArrayB = new String[25];
+
+        public int[] TotalAccoutOfArrayB = new int[25];
+
+        public int NewIntegerWB = 0;
+
+        public int NewIntegerB = 0;
+
+        public void ReacherBus(){
+
+
+            Scanner scan = new Scanner(System.in);
+
+
+            System.out.println("***Otobüs Kayıt Sistemi***");
+
+            System.out.println("Plaka girişi yapınız: ");
+
+            String Na = scan.nextLine();
+
+            System.out.println("Ad Soyad girişi yapınız: ");
+            String Nam = scan.nextLine();
+
+
+            System.out.println("Tarih  girişi yapınız: ");
+            String Date = scan.nextLine();
+
+            System.out.println("Saat girişi yapınız: ");
+            String Time = scan.nextLine();
+
+            System.out.println("Aracin gişe öncesi bakiyesini yaziniz: ");
+            int Total = scan.nextInt();
+
+
+
+            NameofArrayB(Nam,NewIntegerB);
+
+            PlateofArrayB(Na,NewIntegerB);
+
+            DateofArrayB(Date,NewIntegerB);
+
+            HourofArrayB(Time,NewIntegerB);
+
+            TotalAccountOfArrayB(Total,NewIntegerB);
+
+            this.NewIntegerB+=1;
+            this.NewIntegerWB+=1;
+
+        }
+
+
+        public double GetPassingP(){
+            return this.PassingPB;
+        }
+
+        public void NameofArrayB(String NameInFunctionB1, int NumberInArrayFunctionB1){
+            this.NameofArrayB[NumberInArrayFunctionB1] = NameInFunctionB1;
+        }
+        public void PlateofArrayB(String PlateInFunctionB2, int NumberInArrayFunctionB2){
+            this.PlateofArrayB[NumberInArrayFunctionB2] = PlateInFunctionB2;
+        }
+        public void DateofArrayB(String DateInFunctionB3, int NumberInArrayFunctionB3){
+            this.DateofArrayB[NumberInArrayFunctionB3] = DateInFunctionB3;
+        }
+        public void HourofArrayB(String HourInFunctionB4, int NumberInArrayFunctionB4){
+            this.HourofArrayB[NumberInArrayFunctionB4] = HourInFunctionB4;
+        }
+        public void TotalAccountOfArrayB(int AccountInFunctionB5, int NumberInArrayFunctionB5){
+            this.TotalAccoutOfArrayB[NumberInArrayFunctionB5] = AccountInFunctionB5;
+        }
+
+        public String NameArrayReturnerB(int NameOfArrayNumberB){
+            String[] NewArrayInNameArrayReturner = new String[this.NameofArrayB.length];
+            for (int i = 0; i<this.NameofArrayB.length-1;i++){
+                NewArrayInNameArrayReturner[i] = this.NameofArrayB[i];
+
+            }
+            return NewArrayInNameArrayReturner[NameOfArrayNumberB];
+
+        }
+
+        public double TotalAccoutOfArrayB(int TotalAccoutOfArray1) {
+            double[] NewTotalAccoutOfArrayInTotalAccoutReturnerB = new double[this.TotalAccoutOfArrayB.length];
+            for (int i = 0; i < this.TotalAccoutOfArrayB.length - 1; i++) {
+                NewTotalAccoutOfArrayInTotalAccoutReturnerB[i] = this.TotalAccoutOfArrayB[i];
+
+        }
+        return NewTotalAccoutOfArrayInTotalAccoutReturnerB[TotalAccoutOfArray1];
+
+    }
+    public String PlateofArrayBReturnerB(int PlateofArrayBNumberB){
+        String[] PlateofArrayBInPlateofArrayBReturner = new String[this.PlateofArrayB.length];
+        for (int i = 0; i<this.PlateofArrayB.length-1;i++){
+            PlateofArrayBInPlateofArrayBReturner[i] = this.PlateofArrayB[i];
+
+        }
+        return PlateofArrayBInPlateofArrayBReturner[PlateofArrayBNumberB];
+
+    }
+    public String DateofArrayBReturnerB(int DateofArrayNumberB){
+        String[] DateofArrayInDateofArrayReturner = new String[this.DateofArrayB.length];
+        for (int i = 0; i<this.DateofArrayB.length-1;i++){
+            DateofArrayInDateofArrayReturner[i] = this.DateofArrayB[i];
+
+        }
+        return DateofArrayInDateofArrayReturner[DateofArrayNumberB];
+
+    }
+    public String HourofArrayBReturnerB(int HourofArrayBNumberB){
+        String[] HourofArrayBInHourofArrayBReturner = new String[this.HourofArrayB.length];
+        for (int i = 0; i<this.HourofArrayB.length-1;i++){
+            HourofArrayBInHourofArrayBReturner[i] = this.HourofArrayB[i];
+
+        }
+        return HourofArrayBInHourofArrayBReturner[HourofArrayBNumberB];
+
+    }
+
+
+    }
+
+
+////////////// Auto///////////
+
+package com.company;
+
+import java.util.Scanner;
+
+public class AUTO {
+    public double PassingP = 7.50;
+
+    public String[] NameofArray = new String[25];
+
+    public String[] PlateofArray = new String[25];
+
+    public String[] DateofArray = new String[25];
+
+    public String[] HourofArray = new String[25];
+
+    public int[] TotalAccoutOfArray = new int[25];
+
+    public int NewInteger = 0;
+
+
+    public int NewIntegerW = 0;
+
+
+    public void ReacherAuto() {
+        Scanner scan = new Scanner(System.in);
+
+
+        System.out.println("***Otomobil Kayıt Sistemi***");
+
+        System.out.println("Plaka girişi yapınız: ");
+
+        String Na = scan.nextLine();
+
+        System.out.println("Ad Soyad girişi yapınız: ");
+        String Nam = scan.nextLine();
+
+
+        System.out.println("Tarih  girişi yapınız: ");
+        String Date = scan.nextLine();
+
+        System.out.println("Saat girişi yapınız: ");
+        String Time = scan.nextLine();
+
+        System.out.println("Aracin gişe öncesi bakiyesini yaziniz: ");
+        int Total = scan.nextInt();
+
+        NameofArray(Nam, NewInteger);
+
+        PlateofArray(Na, NewInteger);
+
+        DateofArray(Date, NewInteger);
+
+        HourofArray(Time, NewInteger);
+
+        TotalAccoutOfArray(Total, this.NewInteger);
+
+        this.NewInteger += 1;
+        this.NewIntegerW += 1;
+
+    }
+
+    public double GetPassingP() {
+        return this.PassingP;
+
+    }
+
+    public void NameofArray(String NameInFunction, int NumberInArrayFunction2) {
+        this.NameofArray[NumberInArrayFunction2] = NameInFunction;
+    }
+
+    public void PlateofArray(String PlateInFunction, int NumberInArrayFunction3) {
+        this.PlateofArray[NumberInArrayFunction3] = PlateInFunction;
+    }
+
+    public void DateofArray(String DateInFunction, int NumberInArrayFunction4) {
+        this.DateofArray[NumberInArrayFunction4] = DateInFunction;
+    }
+
+    public void HourofArray(String HourInFunction, int NumberInArrayFunction5) {
+        this.HourofArray[NumberInArrayFunction5] = HourInFunction;
+    }
+
+    public void TotalAccoutOfArray(int AccountInFunction6, int NumberInArrayFunction6) {
+        this.TotalAccoutOfArray[NumberInArrayFunction6] = AccountInFunction6;
+
+    }
+
+    public double TotalAccoutOfArray(int TotalAccoutOfArray1) {
+        double[] NewTotalAccoutOfArrayInTotalAccoutReturner = new double[this.TotalAccoutOfArray.length];
+        for (int i = 0; i < this.TotalAccoutOfArray.length - 1; i++) {
+            NewTotalAccoutOfArrayInTotalAccoutReturner[i] = this.TotalAccoutOfArray[i];
+
+        }
+        return NewTotalAccoutOfArrayInTotalAccoutReturner[TotalAccoutOfArray1];
+
+    }
+
+    public String PlateofArray(int PlateofArrayNumber1) {
+        String[] PlateofArrayInPlateofArrayReturner = new String[this.PlateofArray.length];
+        for (int i = 0; i < this.PlateofArray.length - 1; i++) {
+            PlateofArrayInPlateofArrayReturner[i] = this.PlateofArray[i];
+        }
+        return PlateofArrayInPlateofArrayReturner[PlateofArrayNumber1];
+
+    }
+
+    public String DateofArrayReturner(int DateofArrayReturnerNumber1) {
+        String[] DateofArrayInDateofArrayReturner = new String[this.DateofArray.length];
+        for (int i = 0; i < this.DateofArray.length - 1; i++) {
+            DateofArrayInDateofArrayReturner[i] = this.DateofArray[i];
+        }
+        return DateofArrayInDateofArrayReturner[DateofArrayReturnerNumber1];
+
+    }
+
+    public String HourofArrayReturner(int HourofArrayNumber1) {
+        String[] HourofArrayInHourofArrayReturner = new String[this.HourofArray.length];
+        for (int i = 0; i < this.HourofArray.length - 1; i++) {
+            HourofArrayInHourofArrayReturner[i] = this.HourofArray[i];
+        }
+        return HourofArrayInHourofArrayReturner[HourofArrayNumber1];
+
+    }
+
+    public String NameArrayReturner(int NameOfArrayNumber) {
+        String[] NewArrayInNameArrayReturner = new String[this.NameofArray.length];
+        for (int i = 0; i < this.NameofArray.length - 1; i++) {
+            NewArrayInNameArrayReturner[i] = this.NameofArray[i];
+        }
+        return NewArrayInNameArrayReturner[NameOfArrayNumber];
+
+    }
+}
+
+////////////////////////// Minibus///////////////////////
+package com.company;
+
+import java.util.Scanner;
+
+public class Minibus {
+    public double PassingPMB = 15.75;
+
+    public String[] NameofArrayMB = new String[25];
+
+    public String[] PlateofArrayMB = new String[25];
+
+    public String[] DateofArrayMB = new String[25];
+
+    public String[] HourofArrayMB = new String[25];
+
+    public int[] TotalAccoutOfArrayMB = new int[25];
+
+    private int IntegerMB =0;
+
+    public int NewIntegerWMB = 0;
+
+    public void ReacherMB(){
+        Scanner scan = new Scanner(System.in);
+
+
+
+        System.out.println("***Minibüs Kayıt Sistemi***");
+
+        System.out.println("Plaka girişi yapınız: ");
+
+        String Na = scan.nextLine();
+
+        System.out.println("Ad Soyad girişi yapınız: ");
+        String Nam = scan.nextLine();
+
+
+        System.out.println("Tarih  girişi yapınız: ");
+        String Date = scan.nextLine();
+
+        System.out.println("Saat girişi yapınız: ");
+        String Time = scan.nextLine();
+
+        System.out.println("Aracin gişe öncesi bakiyesini yaziniz: ");
+        int Total = scan.nextInt();
+
+        NameofArrayMB(Nam,this.IntegerMB);
+
+        PlateofArrayMB(Na,this.IntegerMB);
+
+        DateofArrayMB(Date,this.IntegerMB);
+
+        HourofArrayMB(Time,this.IntegerMB);
+
+        TotalAccoutOfArrayMB(Total,this.IntegerMB);
+
+        this.IntegerMB +=1;
+        this.NewIntegerWMB+=1;
+
+    }
+
+
+    public double GetPassingP(){
+        return this.PassingPMB;
+    }
+
+    public void NameofArrayMB(String NameInFunctionMB1, int NumberInArrayFunctionMB1){
+        this.NameofArrayMB[NumberInArrayFunctionMB1] = NameInFunctionMB1;
+    }
+    public void PlateofArrayMB(String PlateInFunctionMB2, int NumberInArrayFunctionMB2){
+        this.PlateofArrayMB[NumberInArrayFunctionMB2] = PlateInFunctionMB2;
+    }
+    public void DateofArrayMB(String DateInFunctionMB3, int NumberInArrayFunctionMB3){
+        this.DateofArrayMB[NumberInArrayFunctionMB3] = DateInFunctionMB3;
+    }
+    public void HourofArrayMB(String HourInFunctionMB4, int NumberInArrayFunctionMB4){
+        this.HourofArrayMB[NumberInArrayFunctionMB4] = HourInFunctionMB4;
+    }
+    public void TotalAccoutOfArrayMB(int AccountInFunctionMB5, int NumberInArrayFunctionMB5){
+        this.TotalAccoutOfArrayMB[NumberInArrayFunctionMB5] = AccountInFunctionMB5;
+
+    }
+
+    public String HourofArrayMBReturnerB(int HourofArrayMB3){
+        String[] NewArrayInNameArrayReturner = new String[this.HourofArrayMB.length];
+        for (int i = 0; i<this.HourofArrayMB.length-1;i++){
+            NewArrayInNameArrayReturner[i] = this.HourofArrayMB[i];
+
+        }
+        return NewArrayInNameArrayReturner[HourofArrayMB3];
+
+    }
+
+    public String PlateofArrayMB(int PlateofArrayMBNumbermB1){
+        String[] PlateofArrayMBInPlateofArrayMBReturner = new String[this.PlateofArrayMB.length];
+        for (int i = 0; i<this.PlateofArrayMB.length-1;i++){
+            PlateofArrayMBInPlateofArrayMBReturner[i] = this.PlateofArrayMB[i];
+
+        }
+        return PlateofArrayMBInPlateofArrayMBReturner[PlateofArrayMBNumbermB1];
+
+    }
+
+    public String DateofArrayMBReturnerB(int DateofArrayMB){
+        String[] DateofArrayMBInDateofArrayMBReturner = new String[this.DateofArrayMB.length];
+        for (int i = 0; i<this.DateofArrayMB.length-1;i++){
+            DateofArrayMBInDateofArrayMBReturner[i] = this.DateofArrayMB[i];
+
+        }
+        return DateofArrayMBInDateofArrayMBReturner[DateofArrayMB];
+
+    }
+
+    public String NameofArrayMB(int NameOfArrayNumberM3B){
+        String[] NameofArrayMBReturner = new String[this.NameofArrayMB.length];
+        for (int i = 0; i<this.NameofArrayMB.length-1;i++){
+            NameofArrayMBReturner[i] = this.NameofArrayMB[i];
+
+        }
+        return NameofArrayMBReturner[NameOfArrayNumberM3B];
+
+    }
+
+    public double TotalAccoutOfArrayMB(int TotalAccoutOfArrayMB){
+        double [] TotalAccoutOfArrayMBInTotalAccoutOfArrayMBReturner = new double[this.TotalAccoutOfArrayMB.length];
+        for (int i = 0; i<this.TotalAccoutOfArrayMB.length-1;i++){
+            TotalAccoutOfArrayMBInTotalAccoutOfArrayMBReturner[i] = this.TotalAccoutOfArrayMB[i];
+
+        }
+        return TotalAccoutOfArrayMBInTotalAccoutOfArrayMBReturner[TotalAccoutOfArrayMB];
+
+    }
+
+
+}
+//////////////////////VE GİŞE PARA KAYIT HGSAccountRecord Seklinde///////
+package com.company;
+
+public class HGSAccountRecord  {
+
+    public double TotalAmountGainedA = 0;
+
+    public double TotalAmountGainedB = 0;
+
+    public double TotalAmountGainedMB = 0;
+
+    public double TotalAn =0;
+
+    public void setTotalAmountGainedA(double totalAmountGainedA) {
+        TotalAmountGainedA = totalAmountGainedA;
+    }
+
+    public void setTotalAmountGainedB(double totalAmountGainedB) {
+        TotalAmountGainedB = totalAmountGainedB;
+    }
+
+    public void setTotalAmountGainedMB(double totalAmountGainedMB) {
+        TotalAmountGainedMB = totalAmountGainedMB;
+    }
+
+    public void setTotalAn(double totalAn) {
+        TotalAn = totalAn;
+    }
+    public void Total(){
+        TotalAn+=TotalAmountGainedA+TotalAmountGainedMB+TotalAmountGainedB;
+        System.out.println(TotalAn);
+    }
+
+
+
+
+
+    public  void ReturnTotalAmount(){
+        HGSAccountRecord NEWRECORD = new HGSAccountRecord();
+
+         NEWRECORD.TotalAn = NEWRECORD.TotalAmountGainedB +NEWRECORD.TotalAmountGainedA +NEWRECORD.TotalAmountGainedMB;
+         System.out.println(NEWRECORD.TotalAn);
+    }
+
+}
+
+
+
+
+
