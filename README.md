@@ -113,6 +113,8 @@ NameofArrayB(Nam,NewIntegerB);
 Bu methodların birer kopyaları ve programın çalışp çalışmadığını kontrol etmek için yapıldılar
 Ancak sonrasında çok kullanılmadılar.
       
+      
+      Lütfen Öncelikle Akbank OOP CASE dosyasına bakın orada tüm kodu bulacaksınız ardından istetseniz Main Auto Bus Account gibi class ların orjinal çıktılarına bakabilirsiniz ama öcelikle Akbank OOP CASE bakmanızı önererim. Şimdiden değerlendirmeniz için teşekkür ederim
  
  
  
