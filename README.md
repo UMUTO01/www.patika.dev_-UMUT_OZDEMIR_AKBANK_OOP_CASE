@@ -1,5 +1,9 @@
 # www.patika.dev_-UMUT_OZDEMIR_AKBANK_OOP_CASE
 Merhaba case im birazcik karisik bir sekilde yapıldı ama elimden gelenin en iyisini sunmaya çalıştım şimdi size nasıl yaptığımı anlatayım.
+Lütfen Öncelikle Akbank OOP CASE dosyasına bakın orada tüm kodu bulacaksınız ardından istetseniz Main Auto Bus Account gibi class ların orjinal çıktılarına bakabilirsiniz ama öcelikle Akbank OOP CASE bakmanızı önererim. Şimdiden değerlendirmeniz için teşekkür ederim
+ 
+ 
+ 
 
 
 Öncelikle case yi yapmadan önce nasil yaklaşmam gerektiğini çok düşündüm class ları extend ile mi yapsam yoksa tek bir class in içine field o
@@ -114,10 +118,7 @@ Bu methodların birer kopyaları ve programın çalışp çalışmadığını ko
 Ancak sonrasında çok kullanılmadılar.
       
       
-      Lütfen Öncelikle Akbank OOP CASE dosyasına bakın orada tüm kodu bulacaksınız ardından istetseniz Main Auto Bus Account gibi class ların orjinal çıktılarına bakabilirsiniz ama öcelikle Akbank OOP CASE bakmanızı önererim. Şimdiden değerlendirmeniz için teşekkür ederim
- 
- 
- 
+      
  
 
 
